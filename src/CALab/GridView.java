@@ -5,7 +5,7 @@ import javax.swing.*;
 import mvc.*;
 import java.awt.*;
 
-public class GridView  extends View {
+public class GridView extends View {
 
     private CellView cellViews[][];
 
@@ -15,10 +15,27 @@ public class GridView  extends View {
         cellViews[row][col] = cell
         set cell.row and cell.col here
         */
+        super(model);
+        int dim = ((Grid)model).getDim();
+        this.cellViews = new CellView[dim][dim];
+        for (int i = 0; i < dim; i++) {
+            for (int j = 0; j < dim; j++) {
+                CellView cell = new CellView(((Grid)model).getCell(i, j));
+                cellViews[i][j] = cell;
+            }
+
+        }
     }
 
-    public void update(String msg, Object oldState, Object newState) {
+
+    public void update() {
         // call update method of each CellView
+        for (CellView[] row : cellViews) {
+            for (CellView c : row) {
+                c.update();
+            }
+
+        }
     }
 
 }
