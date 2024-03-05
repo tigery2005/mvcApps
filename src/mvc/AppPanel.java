@@ -54,7 +54,7 @@ public class AppPanel extends JPanel implements Subscriber, ActionListener {
         }
     }
 
-    //TODO change edit actions
+
     public void actionPerformed(ActionEvent e) {
         String cmmd = e.getActionCommand();
         try {
@@ -82,7 +82,7 @@ public class AppPanel extends JPanel implements Subscriber, ActionListener {
                     view.setModel(model);
                     break;
                 }
-
+                //TODO: program terminates when canceling save AS operation
                 case "Quit": {
                     Utilities.saveChanges(model);
                     System.exit(0);

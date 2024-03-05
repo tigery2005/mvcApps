@@ -59,7 +59,7 @@ public class Utilities {
 
     // asks user to save changes
     public static void saveChanges(Model model) {
-        if (model.getUnsavedChanges() && Utilities.confirm("current model has unsaved changes, continue?"))
+        if (model.getUnsavedChanges() && Utilities.confirm("current model has unsaved changes, would you like to save?"))
             Utilities.save(model, false);
     }
 

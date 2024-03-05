@@ -19,12 +19,13 @@ public class StoplightPanel extends AppPanel {
         change = new JButton("Change");
         change.addActionListener(this);
         getControl().add(change);
+        getControl().revalidate();
     }
 
     public static void main(String[] args) {
         AppFactory factory = new StoplightFactory();
         AppPanel panel = new StoplightPanel(factory);
-        panel.display();
+        //panel.display();
     }
 
 }
