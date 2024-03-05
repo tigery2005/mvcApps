@@ -33,8 +33,8 @@ public class GridPanel extends AppPanel {
     }
 
     public static void main(String[] args) {
-        AppFactory factory = new StoplightFactory();
-        AppPanel panel = new stopLight.StoplightPanel(factory);
+        AppFactory factory = new GridFactory();
+        AppPanel panel = new GridPanel(factory);
         //panel.display();
     }
 
