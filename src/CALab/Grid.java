@@ -85,14 +85,32 @@ public abstract class Grid extends Model {
 
     public void observe() {
         // call each cell's observe method and notify subscribers
+        for (Cell[] row : cells) {
+            for (Cell c : row) {
+                c.observe();
+                c.notifySubscribers();
+            }
+        }
     }
 
     public void interact() {
         // ???
+        for (Cell[] row : cells) {
+            for (Cell c : row) {
+                c.interact();
+                c.notifySubscribers();
+            }
+        }
     }
 
     public void update() {
         // ???
+        for (Cell[] row : cells) {
+            for (Cell c : row) {
+                c.update();
+                c.notifySubscribers();
+            }
+        }
     }
 
     public void updateLoop(int cycles) {
