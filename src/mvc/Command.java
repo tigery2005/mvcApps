@@ -7,5 +7,16 @@
 package mvc;
 
 
-public class Command {
+public abstract class Command {
+    private Model model;
+
+    public Command(Model model) {
+        this.model = model;
+    }
+
+    public void execute() {}
+
+    public Model getModel() {
+        return model;
+    }
 }

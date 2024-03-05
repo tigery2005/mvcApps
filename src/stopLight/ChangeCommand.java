@@ -16,7 +16,7 @@ public class ChangeCommand extends Command {
     }
 
     public void execute() {
-        Stoplight light = (Stoplight)model;
+        Stoplight light = (Stoplight) getModel();
         light.change();
     }
 
