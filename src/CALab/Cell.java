@@ -1,5 +1,6 @@
 package CALab;
 
+import java.awt.*;
 import java.util.*;
 import java.io.*;
 import mvc.*;
@@ -55,5 +56,9 @@ abstract class Cell extends Publisher implements Serializable {
     public abstract void nextState();
     // set status to a random or initial value
     public abstract void reset(boolean randomly);
+    // get color
+    public abstract Color getColor();
+    // get status
+    public abstract int getStatus();
 
 }
