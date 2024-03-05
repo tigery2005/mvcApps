@@ -16,11 +16,13 @@ public class AppPanel extends JPanel implements Subscriber, ActionListener {
     private Model model;
     private ControlPanel control;
     private View view;
+    private AppFactory factory;
 
     public AppPanel(AppFactory factory) {
         model = factory.makeModel();
         view = factory.makeView(model);
         control = new ControlPanel();
+        this.factory = factory;
         this.setLayout((new GridLayout(1, 2)));
         this.add(control);
         this.add(view);
@@ -56,7 +58,94 @@ public class AppPanel extends JPanel implements Subscriber, ActionListener {
 
     //TODO change actions
     public void actionPerformed(ActionEvent e) {
+        String cmmd = e.getActionCommand();
+        try {
+            switch (cmmd) {
+                case "Execute": {
+                    mac.execute();
+                    break;
+                }
 
+                case "Parse": {
+                    String fileName = JOptionPane.showInputDialog(null, "Enter file name:");
+                    if (fileName == null || fileName.isEmpty()) {
+                        System.out.println("No file name entered. Exiting.");
+                        break;
+                    }
+
+                    try {
+                        currentProgram.clear();
+                        StringBuilder contentBuilder = new StringBuilder();
+                        try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
+                            String line;
+                            while ((line = reader.readLine()) != null) {
+                                contentBuilder.append(line).append("\n");
+                                currentProgram.add(line);
+                            }
+                        }
+
+                        String program = contentBuilder.toString();
+                        mac.setProgram(MiniMacParser.parse(program));
+                        mac.notifySubscribers();
+                    }
+
+                    catch (IOException exc) {
+                        exc.printStackTrace();
+                    }
+
+                    break;
+                }
+
+                case "Clear": {
+                    mac.clear();
+                    break;
+                }
+
+
+                case "Save": {
+                    Utilities.save(model, false);
+                    break;
+                }
+
+                case "Open": {
+                    model = Utilities.open(model);
+                    view.setModel(model);
+                    break;
+
+                }
+
+                case "New": {
+                    model = factory.makeModel();
+                    view.setModel(model);
+                    break;
+                }
+
+                case "Quit": {
+                    Utilities.saveChanges(model);
+                    System.exit(0);
+                    break;
+                }
+
+                case "About": {
+                    Utilities.inform(factory.about());
+                    break;
+                }
+
+                case "Help": {
+                    String[] cmmds = factory.getHelp();
+                    Utilities.inform(cmmds);
+                    break;
+
+                }
+
+                default: {
+                    throw new Exception("Unrecognized command: " + cmmd);
+                }
+            }
+
+        } catch (Exception ex) {
+            Utilities.error(ex);
+        }
     }
 
     //TODO implement update()

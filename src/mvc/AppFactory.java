@@ -6,7 +6,6 @@
 
 package mvc;
 
-import java.util.List;
 
 public interface AppFactory {
     Model makeModel();
