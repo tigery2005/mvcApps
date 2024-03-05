@@ -23,7 +23,6 @@ public class GridView extends View {
                 CellView cell = new CellView(((Grid)model).getCell(i, j));
                 cellViews[i][j] = cell;
             }
-
         }
     }
 

@@ -34,7 +34,11 @@ public abstract class Grid extends Model {
                 newCell.col = j;
                 newCell.myGrid = this;
                 cells[i][j] = newCell;
-                newCell.neighbors = getNeighbors(newCell, 1);
+            }
+        }
+        for (Cell[] row : cells) {
+            for (Cell c : row) {
+                c.neighbors = getNeighbors(c, 1);
             }
         }
     }

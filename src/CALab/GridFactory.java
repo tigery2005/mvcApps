@@ -11,7 +11,7 @@ public class GridFactory implements AppFactory {
 
     //TODO: fix me
     public Model makeModel() {
-        return null;
+        return new Society(20);
     }
 
     public View makeView(Model m) {
