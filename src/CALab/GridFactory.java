@@ -4,9 +4,6 @@ import mvc.AppFactory;
 import mvc.Command;
 import mvc.Model;
 import mvc.View;
-import stopLight.ChangeCommand;
-import stopLight.Stoplight;
-import stopLight.StoplightView;
 
 import java.util.Objects;
 
@@ -14,7 +11,7 @@ public class GridFactory implements AppFactory {
 
     //TODO: fix me
     public Model makeModel() {
-        return;
+        return null;
     }
 
     public View makeView(Model m) {
