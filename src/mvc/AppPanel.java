@@ -32,7 +32,7 @@ public class AppPanel extends JPanel implements Subscriber, ActionListener {
         Container cp = frame.getContentPane();
         cp.add(this);
         frame.setJMenuBar(this.createMenuBar());
-        frame.setTitle("MiniMac");
+        frame.setTitle(factory.getTitle());
         frame.setSize(800, 600);
         frame.setVisible(true);
         //frame.pack();
@@ -40,10 +40,9 @@ public class AppPanel extends JPanel implements Subscriber, ActionListener {
 
     protected JMenuBar createMenuBar() {
         JMenuBar result = new JMenuBar();
-        JMenu fileMenu = Utilities.makeMenu("File", new String[]{"New", "Save", "Open", "Quit"}, this);
+        JMenu fileMenu = Utilities.makeMenu("File", new String[]{"New", "Save", "Save As", "Open", "Quit"}, this);
         result.add(fileMenu);
-        //TODO: change edit menu
-        JMenu editMenu = Utilities.makeMenu("Edit", new String[]{"Parse", "Execute", "Clear"}, this);
+        JMenu editMenu = Utilities.makeMenu("Edit", factory.getEditCommands(), this);
         result.add(editMenu);
         JMenu helpMenu = Utilities.makeMenu("Help", new String[]{"About", "Help"}, this);
         result.add(helpMenu);
@@ -56,54 +55,19 @@ public class AppPanel extends JPanel implements Subscriber, ActionListener {
         }
     }
 
-    //TODO change actions
+    //TODO change edit actions
     public void actionPerformed(ActionEvent e) {
         String cmmd = e.getActionCommand();
         try {
             switch (cmmd) {
-                case "Execute": {
-                    mac.execute();
-                    break;
-                }
-
-                case "Parse": {
-                    String fileName = JOptionPane.showInputDialog(null, "Enter file name:");
-                    if (fileName == null || fileName.isEmpty()) {
-                        System.out.println("No file name entered. Exiting.");
-                        break;
-                    }
-
-                    try {
-                        currentProgram.clear();
-                        StringBuilder contentBuilder = new StringBuilder();
-                        try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
-                            String line;
-                            while ((line = reader.readLine()) != null) {
-                                contentBuilder.append(line).append("\n");
-                                currentProgram.add(line);
-                            }
-                        }
-
-                        String program = contentBuilder.toString();
-                        mac.setProgram(MiniMacParser.parse(program));
-                        mac.notifySubscribers();
-                    }
-
-                    catch (IOException exc) {
-                        exc.printStackTrace();
-                    }
-
-                    break;
-                }
-
-                case "Clear": {
-                    mac.clear();
-                    break;
-                }
-
 
                 case "Save": {
                     Utilities.save(model, false);
+                    break;
+                }
+
+                case "Save As": {
+                    Utilities.save(model, true);
                     break;
                 }
 
@@ -139,7 +103,11 @@ public class AppPanel extends JPanel implements Subscriber, ActionListener {
                 }
 
                 default: {
-                    throw new Exception("Unrecognized command: " + cmmd);
+                    Command newCommand = factory.makeEditCommand(model, cmmd,null);
+                    if(newCommand == null) {
+                        throw new Exception("Unrecognized command: " + cmmd);
+                    }
+                    newCommand.execute();
                 }
             }
 
