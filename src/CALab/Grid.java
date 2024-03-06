@@ -57,7 +57,7 @@ public abstract class Grid extends Model {
                 // notify subscribers
             }
         }
-        notifySubscribers();
+        changed();
     }
 
 
@@ -94,7 +94,6 @@ public abstract class Grid extends Model {
                 c.observe();
             }
         }
-        notifySubscribers();
     }
 
     public void interact() {
@@ -104,7 +103,6 @@ public abstract class Grid extends Model {
                 c.interact();
             }
         }
-        notifySubscribers();
     }
 
     public void update() {
@@ -114,7 +112,7 @@ public abstract class Grid extends Model {
                 c.update();
             }
         }
-        notifySubscribers();
+        changed();
     }
 
     public void updateLoop(int cycles) {

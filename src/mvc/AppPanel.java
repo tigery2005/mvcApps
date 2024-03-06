@@ -79,6 +79,7 @@ public class AppPanel extends JPanel implements Subscriber, ActionListener {
                 }
 
                 case "New": {
+                    Utilities.saveChanges(model);
                     model = factory.makeModel();
                     view.setModel(model);
                     break;

@@ -16,16 +16,7 @@ public class GridView extends View {
         set cell.row and cell.col here
         */
         super(model);
-        int dim = ((Grid)model).getDim();
-        this.setLayout(new GridLayout(dim, dim));
-        this.cellViews = new CellView[dim][dim];
-        for (int i = 0; i < dim; i++) {
-            for (int j = 0; j < dim; j++) {
-                CellView cell = new CellView(((Grid)model).getCell(i, j));
-                cellViews[i][j] = cell;
-                this.add(cell);
-            }
-        }
+        setModel(model);
         update();
     }
 
@@ -38,6 +29,23 @@ public class GridView extends View {
             }
 
         }
+    }
+
+    @Override
+    public void setModel(Model model) {
+        removeAll();
+        int dim = ((Grid)model).getDim();
+        this.setLayout(new GridLayout(dim, dim));
+        this.cellViews = new CellView[dim][dim];
+        for (int i = 0; i < dim; i++) {
+            for (int j = 0; j < dim; j++) {
+                CellView cell = new CellView(((Grid)model).getCell(i, j));
+                cellViews[i][j] = cell;
+                this.add(cell);
+            }
+        }
+        super.setModel(model);
+
     }
 
 }
