@@ -33,9 +33,12 @@ public class GridPanel extends AppPanel {
     }
 
     public static void main(String[] args) {
-        AppFactory factory = new GridFactory();
-        AppPanel panel = new GridPanel(factory);
-        //panel.display();
+        SwingUtilities.invokeLater(() -> {
+            ;
+            AppFactory factory = new SocietyFactory();
+            AppPanel panel = new GridPanel(factory);
+            //panel.display();
+        });
     }
 
 }

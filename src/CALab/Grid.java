@@ -92,9 +92,9 @@ public abstract class Grid extends Model {
         for (Cell[] row : cells) {
             for (Cell c : row) {
                 c.observe();
-                c.notifySubscribers();
             }
         }
+        notifySubscribers();
     }
 
     public void interact() {
@@ -102,9 +102,9 @@ public abstract class Grid extends Model {
         for (Cell[] row : cells) {
             for (Cell c : row) {
                 c.interact();
-                c.notifySubscribers();
             }
         }
+        notifySubscribers();
     }
 
     public void update() {
@@ -112,9 +112,9 @@ public abstract class Grid extends Model {
         for (Cell[] row : cells) {
             for (Cell c : row) {
                 c.update();
-                c.notifySubscribers();
             }
         }
+        notifySubscribers();
     }
 
     public void updateLoop(int cycles) {

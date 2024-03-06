@@ -7,9 +7,8 @@ import mvc.View;
 
 import java.util.Objects;
 
-public class GridFactory implements AppFactory {
+public class SocietyFactory implements AppFactory {
 
-    //TODO: fix me
     public Model makeModel() {
         return new Society(20);
     }
@@ -49,7 +48,7 @@ public class GridFactory implements AppFactory {
     }
 
     public String about() {
-        return "CALab version 2.0. Copyright 2024 by MVC Group 3";
+        return "CALab - LifeLab version 2.0. Copyright 2024 by MVC Group 3";
     }
 
 }

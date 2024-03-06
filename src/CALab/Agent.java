@@ -15,7 +15,7 @@ public class Agent extends Cell{
     public void observe() {
         ambiance = 0;
         for (Cell c : neighbors) {
-            if (c.getStatus() == 0) {
+            if (c.getStatus() == 1) {
                 ambiance++;
             }
         }
