@@ -36,7 +36,14 @@ public class Agent extends Cell{
     }
 
     @Override
-    public void nextState() {}
+    public void nextState() {
+        if (status == 0) {
+            status = 1;
+        }
+        else if (status == 1) {
+            status = 0;
+        }
+    }
 
     @Override
     public void reset(boolean randomly) {
@@ -48,6 +55,9 @@ public class Agent extends Cell{
             else {
                 status = 0;
             }
+        }
+        else {
+            status = 0;
         }
     }
 

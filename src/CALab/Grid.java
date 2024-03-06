@@ -28,7 +28,7 @@ public abstract class Grid extends Model {
         // 2. use getNeighbors to set the neighbors field of each cell
         for (int i = 0; i < dim; i++) {
             for (int j = 0; j < dim; j++) {
-                // TODO: What is uniform????
+                // What is uniform????
                 Cell newCell = makeCell(true);
                 newCell.row = i;
                 newCell.col = j;
@@ -55,9 +55,9 @@ public abstract class Grid extends Model {
                     c.reset(false);
                 }
                 // notify subscribers
-                c.notifySubscribers();
             }
         }
+        notifySubscribers();
     }
 
 
