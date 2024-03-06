@@ -2,18 +2,16 @@ package CALab;
 
 import mvc.AppFactory;
 import mvc.AppPanel;
-import stopLight.StoplightPanel;
-import mvc.*;
 
 import javax.swing.*;
 
-public class CAPanel extends AppPanel{
+public class GridPanel extends AppPanel{
     private JButton RUN1;
     private JButton RUN50;
     private JButton POPULATE;
     private JButton CLEAR;
 
-    public CAPanel (AppFactory factory) {
+    public GridPanel(AppFactory factory) {
         super(factory);
         RUN1 = new JButton("RUN1");
         RUN1.addActionListener(this);
@@ -31,8 +29,8 @@ public class CAPanel extends AppPanel{
     }
 
     public static void main(String[] args) {
-        AppFactory factory = new CAFactory();
-        AppPanel panel = new CAPanel(factory);
+        AppFactory factory = new GridFactory();
+        AppPanel panel = new GridPanel(factory);
         //panel.display();
     }
 }

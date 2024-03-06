@@ -1,15 +1,14 @@
 package CALab;
 
 import mvc.*;
-import stopLight.ChangeCommand;
 import stopLight.Stoplight;
 import stopLight.StoplightView;
 
 import java.util.Objects;
 
-public class CAFactory implements AppFactory {
+public class GridFactory implements AppFactory {
     public Model makeModel() {
-        return new CALab();
+        return new Grid();
     }
     public View makeView(Model m) {
         return new StoplightView((Stoplight)m);
