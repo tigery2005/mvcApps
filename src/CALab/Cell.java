@@ -1,5 +1,7 @@
 package CALab;
 import mvc.*;
+
+import java.awt.*;
 import java.util.*;
 import java.io.*;
 import mvc.*;
@@ -34,6 +36,12 @@ abstract class Cell extends Publisher implements Serializable {
         }
     }
 
+    public Color getColor() {
+        return null; //for now
+    }
+    public int getStatus() {
+        return 0; //
+    }
     // observer neighbors' states
     public abstract void observe();
     // interact with a random neighbor
