@@ -33,6 +33,7 @@ public class Agent extends Cell{
         else if (Society.death.contains(ambiance) && status == 1) {
             status = 0;
         }
+        notifySubscribers();
     }
 
     @Override
@@ -43,6 +44,7 @@ public class Agent extends Cell{
         else if (status == 1) {
             status = 0;
         }
+        notifySubscribers();
     }
 
     @Override
@@ -59,6 +61,7 @@ public class Agent extends Cell{
         else {
             status = 0;
         }
+        notifySubscribers();
     }
 
     @Override

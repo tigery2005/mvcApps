@@ -23,6 +23,7 @@ public class AppPanel extends JPanel implements Subscriber, ActionListener {
         view = factory.makeView(model);
         control = new ControlPanel();
         this.factory = factory;
+        model.subscribe(this);
         this.setLayout((new GridLayout(1, 2)));
         this.add(control);
         this.add(view);
@@ -115,7 +116,6 @@ public class AppPanel extends JPanel implements Subscriber, ActionListener {
         }
     }
 
-    //TODO implement update()
     @Override
     public void update() {
     }
