@@ -2,7 +2,6 @@ package CALab;
 
 import java.awt.*;
 import java.util.*;
-import java.io.*;
 import mvc.*;
 
 public abstract class Grid extends Model {
@@ -48,12 +47,7 @@ public abstract class Grid extends Model {
         // randomly set the status of each cell
         for (Cell[] row : cells) {
             for (Cell c : row) {
-                if (randomly) {
-                    c.reset(true);
-                }
-                else {
-                    c.reset(false);
-                }
+                c.reset(randomly);
                 // notify subscribers
             }
         }
@@ -82,8 +76,8 @@ public abstract class Grid extends Model {
     }
 
     // overide these
-    public int getStatus() { return 0; }
-    public Color getColor() { return Color.GREEN; }
+    //public int getStatus() { return 0; }
+    //public Color getColor() { return Color.GREEN; }
 
     // cell phases:
 

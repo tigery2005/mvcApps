@@ -14,7 +14,7 @@ public abstract class Command {
         this.model = model;
     }
 
-    public void execute() {}
+    public abstract void execute();
 
     public Model getModel() {
         return model;

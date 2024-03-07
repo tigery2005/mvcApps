@@ -1,9 +1,10 @@
-package CALab;
+package LifeLab;
 
+import CALab.*;
 import java.awt.*;
 import java.util.Random;
 
-public class Agent extends Cell{
+public class Agent extends Cell {
     private int status = 0;
     private int ambiance = 8;
 

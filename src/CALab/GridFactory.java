@@ -1,17 +1,11 @@
 package CALab;
 
-import mvc.AppFactory;
-import mvc.Command;
-import mvc.Model;
-import mvc.View;
+import mvc.*;
+import java.util.*;
 
-import java.util.Objects;
+public abstract class GridFactory implements AppFactory {
 
-public class SocietyFactory implements AppFactory {
-
-    public Model makeModel() {
-        return new Society(20);
-    }
+    public abstract Model makeModel();
 
     public View makeView(Model m) {
         return new GridView((Grid) m);
@@ -25,13 +19,13 @@ public class SocietyFactory implements AppFactory {
     public Command makeEditCommand(Model model, String type, Object source) {
         if (Objects.equals(type, "Run 1"))
             return new RunCommand(model, 1);
-        if (Objects.equals(type, "Run 50"))
+        else if (Objects.equals(type, "Run 50"))
             return new RunCommand(model, 50);
-        if (Objects.equals(type, "Populate"))
+        else if (Objects.equals(type, "Populate"))
             return new PopulateCommand(model);
-        if (Objects.equals(type, "Clear"))
+        else if (Objects.equals(type, "Clear"))
             return new ClearCommand(model);
-        return null;
+        else return null;
     }
 
     public String getTitle() {
@@ -47,8 +41,6 @@ public class SocietyFactory implements AppFactory {
         };
     }
 
-    public String about() {
-        return "CALab - LifeLab version 2.0. Copyright 2024 by MVC Group 3";
-    }
+    public abstract String about();
 
 }

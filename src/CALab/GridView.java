@@ -1,13 +1,11 @@
 package CALab;
 
-import javax.swing.*;
-
 import mvc.*;
 import java.awt.*;
 
 public class GridView extends View {
 
-    private CellView cellViews[][];
+    private CellView[][] cellViews;
 
     public GridView(Model model) {
         /*

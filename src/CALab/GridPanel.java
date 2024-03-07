@@ -1,11 +1,9 @@
 package CALab;
 
-import mvc.AppFactory;
-import mvc.AppPanel;
-
+import mvc.*;
 import javax.swing.*;
 
-public class GridPanel extends AppPanel {
+public abstract class GridPanel extends AppPanel {
     private JButton run1;
     private JButton run50;
     private JButton populate;
@@ -33,12 +31,6 @@ public class GridPanel extends AppPanel {
     }
 
     public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> {
-            ;
-            AppFactory factory = new SocietyFactory();
-            AppPanel panel = new GridPanel(factory);
-            //panel.display();
-        });
     }
 
 }

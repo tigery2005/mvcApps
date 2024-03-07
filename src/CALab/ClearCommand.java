@@ -1,7 +1,6 @@
 package CALab;
 
-import mvc.Command;
-import mvc.Model;
+import mvc.*;
 
 public class ClearCommand extends Command {
     public ClearCommand(Model model) {

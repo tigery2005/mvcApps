@@ -1,11 +1,12 @@
-package CALab;
+package LifeLab;
+
 import CALab.*;
 import java.util.*;
 
-public class Society extends Grid{
+public class Society extends Grid {
     public static int percentAlive = 50;
-    public static Set<Integer> rebirth = new HashSet<Integer>();
-    public static Set<Integer> death = new HashSet<Integer>();
+    public static Set<Integer> rebirth = new HashSet<>();
+    public static Set<Integer> death = new HashSet<>();
 
     static {
         rebirth.add(3);
