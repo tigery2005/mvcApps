@@ -31,9 +31,11 @@ public abstract class Grid extends Model {
                 u = makeCell(false);
             }
         }//fill in cells
-        for (int i=0;i<dim;i++) for (Cell u : cells[i]){
-            u.neighbors = getNeighbors(u,1);
-        }//update the neighbours with radius of 1 (8 cells in particular)
+        for (int i=0;i<dim;i++) {
+            for (Cell u : cells[i]){
+                u.neighbors = getNeighbors(u,1);
+            }//update the neighbours with radius of 1 (8 cells in particular)
+        }
     }
 
     // called when Populate button is clicked
@@ -91,17 +93,29 @@ public abstract class Grid extends Model {
 
     public void observe() {
         // call each cell's observe method and notify subscribers
-        for (int i=0;i<dim;i++) for (Cell u : cells[i]) u.observe();
+        for (int i=0;i<dim;i++) {
+            for (Cell u : cells[i]) {
+                u.observe();
+            }
+        }
     }
 
     public void interact() {
         // ???
-        for (int i=0;i<dim;i++) for (Cell u : cells[i]) u.interact();
+        for (int i=0;i<dim;i++) {
+            for (Cell u : cells[i]) {
+                u.interact();
+            }
+        }
 
     }
 
     public void update() {
-        for (int i=0;i<dim;i++) for (Cell u : cells[i]) u.update();
+        for (int i=0;i<dim;i++) {
+            for (Cell u : cells[i]) {
+                u.update();
+            }
+        }
     }
 
     public void updateLoop(int cycles) {
