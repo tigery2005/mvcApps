@@ -20,6 +20,7 @@ public class CellView extends JButton implements ActionListener, Subscriber {
     @Override
     public void actionPerformed(ActionEvent e) {
         myCell.nextState();
+        myCell.myGrid.setUnsavedChanges(true);
         // call update needed?
     }
 
@@ -30,5 +31,7 @@ public class CellView extends JButton implements ActionListener, Subscriber {
         setBackground(myCell.getColor());
         setBorder(BorderFactory.createLineBorder(Color.black)); // needed?
         setText("" + myCell.getStatus());
+        setOpaque(true);
+        repaint();
     }
 }
