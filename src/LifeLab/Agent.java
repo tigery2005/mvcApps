@@ -10,36 +10,67 @@ public class Agent extends Cell {
 
     @Override
     public void update() {
-        observe();
-
+        if (status == 0 && ambience == 3) {
+            status = 1;
+            color = Color.green;
+        }
+        else if (status == 1 && (ambience != 3)) {
+            status = 0;
+            color = Color.red;
+        }
     }
 
     @Override
     public void nextState() {
-        //if ambience is certain numver then die or rebirth
+        if (status == 0) {
+            status = 1;
+            color = Color.green;
+        }
+        else {
+            status = 0;
+            color = Color.red;
+        }
     }
 
     @Override
     public void reset(boolean randomly) {
-
+        if (randomly){
+            Random random = new Random();
+            status = random.nextInt(1);
+            if(status == 0) {
+                color = Color.red;
+            }
+            else {
+                color = Color.green;
+            }
+        }
+        else {
+            status = 0;
+            color = Color.red;
+        }
     }
 
     @Override
     public Color getColor() {
-        return null;
+        return color;
     }
 
     @Override
     public int getStatus() {
         return status;
     }
-
+    @Override
     public void observe() {
-        if (status == 0 && ambience == 3){
-            status = 1;
-        }
-        else if (status == 1 && (ambience != 3)){
-            status = 0;
+        //set to array
+        Cell arrNei[] = new Cell[neighbors.size()];
+        int i = 0;
+        for (Cell x : neighbors)
+            arrNei[i++] = x;
+
+        for (int j = 0; j < neighbors.size(); j++) {
+            if (arrNei[j].getStatus() == 0) {
+                ambience = ambience - 1;
+            }
         }
     }
 
