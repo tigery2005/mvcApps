@@ -12,24 +12,26 @@ public class Agent extends Cell {
     public void update() {
         if (status == 0 && ambience == 3) {
             status = 1;
-            color = Color.green;
+            getColor();
         }
         else if (status == 1 && (ambience != 3)) {
             status = 0;
-            color = Color.red;
+            getColor();
         }
+        notifySubscribers();
     }
 
     @Override
     public void nextState() {
         if (status == 0) {
             status = 1;
-            color = Color.green;
+            getColor();
         }
         else {
             status = 0;
-            color = Color.red;
+            getColor();
         }
+        notifySubscribers();
     }
 
     @Override
@@ -37,22 +39,23 @@ public class Agent extends Cell {
         if (randomly){
             Random random = new Random();
             status = random.nextInt(1);
-            if(status == 0) {
-                color = Color.red;
-            }
-            else {
-                color = Color.green;
-            }
+            getColor();
         }
         else {
             status = 0;
-            color = Color.red;
+            getColor();
         }
+        notifySubscribers();
     }
 
     @Override
     public Color getColor() {
-        return color;
+        if (status == 0) {
+            return color = Color.red;
+        }
+        else {
+            return color = Color.green;
+        }
     }
 
     @Override
