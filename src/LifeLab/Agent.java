@@ -3,6 +3,7 @@ package LifeLab;
 import java.awt.*;
 import java.util.*;
 import CALab.Cell;
+import LifeLab.Society;
 
 public class Agent extends Cell {
     private int status = 0;
@@ -10,11 +11,19 @@ public class Agent extends Cell {
 
     @Override
     public void update() {
-        if (status == 0 && ambience == 3) {
-            status = 1;
+        if (status == 0) {
+            for(int i : Society.rebirth) {
+                if (i == ambience){
+                    status = 1;
+                }
+            }
         }
-        else if (status == 1 && (ambience != 3)) {
-            status = 0;
+        else if (status == 1) {
+            for(int j : Society.death) {
+                if (j == ambience) {
+                    status = 0;
+                }
+            }
         }
         notifySubscribers();
     }
@@ -35,9 +44,9 @@ public class Agent extends Cell {
         if (randomly){
 
             Random random = new Random();
-            int x = random.nextInt(100);
+            double x = random.nextDouble() * 100;
 
-            if( x > Society.percentAlive) {
+            if( x < Society.percentAlive) {
                 status = 1;
             }
             else {
