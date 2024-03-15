@@ -12,18 +12,14 @@ public class Agent extends Cell {
     @Override
     public void update() {
         if (status == 0) {
-            for(int i : Society.rebirth) {
-                if (i == ambience){
+                if (Society.rebirth.contains(ambience)){
                     status = 1;
                 }
-            }
         }
         else if (status == 1) {
-            for(int j : Society.death) {
-                if (j == ambience) {
+                if (Society.death.contains(ambience)) {
                     status = 0;
                 }
-            }
         }
         notifySubscribers();
     }
