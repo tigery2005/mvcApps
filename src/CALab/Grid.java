@@ -22,17 +22,21 @@ public abstract class Grid extends Model {
         populate();
     }
     public Grid() { this(20); }
-
     protected void populate() {
         // 1. use makeCell to fill in cells
         // 2. use getNeighbors to set the neighbors field of each cell
         for (int i=0;i<dim;i++) {
-            for (Cell u : cells[i]){
-                u = makeCell(false);
+            for (int j=0;j<dim;j++){
+                cells[i][j] = makeCell(false);
+                //cells[i][j] = new Cell(i,j,this);
+                cells[i][j].row = i;
+                cells[i][j].col = j;
+                cells[i][j].myGrid = this;
             }
         }//fill in cells
         for (int i=0;i<dim;i++) {
-            for (Cell u : cells[i]){
+            for (int j=0;j<dim;j++){
+                Cell u = cells[i][j];
                 u.neighbors = getNeighbors(u,1);
             }//update the neighbours with radius of 1 (8 cells in particular)
         }
@@ -43,23 +47,27 @@ public abstract class Grid extends Model {
         if (randomly) {
             // randomly set the status of each cell
             for (int i=0;i<dim;i++) {
-                for (Cell u : cells[i]){
-                    u = makeCell(Math.random()>0.5);
+                for (int j=0;j<dim;j++){
+                    Cell u = cells[i][j];
+                    u.reset(Math.random()>0.5);
                     //Math.random return [0-1). >0.5 is 50% chance true/false
                 }
             }
         } else {
             // set the status of each cell to 0 (dead)
             for (int i=0;i<dim;i++) {
-                for (Cell u : cells[i]){
-                    u = makeCell(false);
+                for (int j=0;j<dim;j++){
+                    Cell u = cells[i][j];
+                    u.reset(false);
                     //set all of them to false
                 }
             }
 
         }
-        this.notifySubscribers();
+
         // notify subscribers
+        this.notifySubscribers();
+        this.changed();
     }
 
 
@@ -94,7 +102,8 @@ public abstract class Grid extends Model {
     public void observe() {
         // call each cell's observe method and notify subscribers
         for (int i=0;i<dim;i++) {
-            for (Cell u : cells[i]) {
+            for (int j=0;j<dim;j++){
+                Cell u = cells[i][j];
                 u.observe();
             }
         }
@@ -103,7 +112,8 @@ public abstract class Grid extends Model {
     public void interact() {
         // ???
         for (int i=0;i<dim;i++) {
-            for (Cell u : cells[i]) {
+            for (int j=0;j<dim;j++){
+                Cell u = cells[i][j];
                 u.interact();
             }
         }
@@ -112,10 +122,12 @@ public abstract class Grid extends Model {
 
     public void update() {
         for (int i=0;i<dim;i++) {
-            for (Cell u : cells[i]) {
+            for (int j=0;j<dim;j++){
+                Cell u = cells[i][j];
                 u.update();
             }
         }
+        this.changed();
     }
 
     public void updateLoop(int cycles) {
