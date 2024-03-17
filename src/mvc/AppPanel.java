@@ -34,6 +34,7 @@ public class AppPanel extends JPanel implements Subscriber, ActionListener {
         frame.setTitle(factory.getTitle());
         frame.setSize(800, 600);
         frame.setVisible(true);
+        frame.setLocationRelativeTo(null);
         //frame.pack();
     }
 
@@ -71,18 +72,24 @@ public class AppPanel extends JPanel implements Subscriber, ActionListener {
                 }
 
                 case "Open": {
+                    this.model.unsubscribe(this);
                     model = Utilities.open(model);
+                    this.model.subscribe(this);
                     view.setModel(model);
+                    model.changed();
                     break;
-
                 }
 
                 case "New": {
+                    Utilities.saveChanges(model);
+                    this.model.unsubscribe(this);
                     model = factory.makeModel();
+                    this.model.subscribe(this);
                     view.setModel(model);
+                    model.changed();
                     break;
                 }
-                //TODO: program terminates when canceling save AS operation
+
                 case "Quit": {
                     Utilities.saveChanges(model);
                     System.exit(0);
@@ -115,7 +122,7 @@ public class AppPanel extends JPanel implements Subscriber, ActionListener {
         }
     }
 
-    //TODO implement update()
+
     @Override
     public void update() {
     }
