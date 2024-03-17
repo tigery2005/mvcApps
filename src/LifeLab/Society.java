@@ -27,6 +27,6 @@ public class Society extends Grid {
 
     @Override
     public Cell makeCell(boolean uniform) {
-        return new (Cell)Agent();
+        return new Agent();
     }
 }

@@ -55,7 +55,7 @@
 
 
             // notify subscribers
-            this.notifySubscribers();
+            this.changed();
         }
 
 
