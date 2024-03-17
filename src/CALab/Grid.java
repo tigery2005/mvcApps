@@ -67,18 +67,16 @@
             The asker is not a neighbor of itself.
             */
 
-            Set<Cell> Ans = new HashSet<Cell>();
-            for(int i=asker.col-radius;i<asker.col+radius;i++){
-                for(int j=asker.row-radius;j<asker.row+radius;j++){
-                    // i,j are the coords. if radius=1 that is all 8 cells around it
-                    if(i==asker.col && j==asker.row) continue;
-                    int x = (i+dim)%dim;
-                    int y = (j+dim)%dim;
-                    //x and y deals with corner cases like row/col 0 or dim-1.
-                    Ans.add(cells[x][y]);
+            Set<Cell> neighbors = new HashSet<Cell>();
+            for (int i = -radius; i <= radius ; i++) {
+                for (int j = -radius; j <= radius ; j++) {
+                    if (i == 0 && j == 0) continue;
+                    int row = (asker.row + i + dim) % dim;
+                    int col = (asker.col + j + dim) % dim;
+                    neighbors.add(cells[row][col]);
                 }
             }
-            return Ans;
+            return neighbors;
         }
 
         // overide these
