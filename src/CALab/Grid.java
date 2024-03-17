@@ -44,30 +44,18 @@ public abstract class Grid extends Model {
 
     // called when Populate button is clicked
     public void repopulate(boolean randomly) {
-        if (randomly) {
             // randomly set the status of each cell
             for (int i=0;i<dim;i++) {
                 for (int j=0;j<dim;j++){
                     Cell u = cells[i][j];
-                    u.reset(Math.random()>0.5);
+                    u.reset(randomly);
                     //Math.random return [0-1). >0.5 is 50% chance true/false
                 }
             }
-        } else {
-            // set the status of each cell to 0 (dead)
-            for (int i=0;i<dim;i++) {
-                for (int j=0;j<dim;j++){
-                    Cell u = cells[i][j];
-                    u.reset(false);
-                    //set all of them to false
-                }
-            }
 
-        }
 
         // notify subscribers
         this.notifySubscribers();
-        this.changed();
     }
 
 
