@@ -12,19 +12,23 @@ public class SocietyPanel extends GridPanel {
     public SocietyPanel(AppFactory factory) {
         super(factory);
 
-        createLabelAndTextField("rebirth: ", Society.rebirth);
-        createLabelAndTextField("death: ", Society.death);
+        JPanel p = new JPanel();
+        p.setBackground(Color.PINK);
+        p.setLayout(new GridLayout(2,2));
+        createLabelAndTextField(p,"rebirth: ", Society.rebirth);
+        createLabelAndTextField(p,"death: ", Society.death);
 
+        getControl().add(p);
         getControl().revalidate();
     }
 
-    public void createLabelAndTextField(String labelText, Set<Integer> set){
+    public void createLabelAndTextField(JPanel panel, String labelText, Set<Integer> set){
         JLabel label = new JLabel(labelText);
-        label.setPreferredSize(new Dimension(110,20));
+        label.setPreferredSize(new Dimension(40,20));
         label.setHorizontalAlignment(SwingConstants.RIGHT);
-        getControl().add(label);
+        panel.add(label);
 
-        JTextField textField1 = new JTextField(18);
+        JTextField textField1 = new JTextField(12);
         updateTextField(set, textField1);
         textField1.getDocument().addDocumentListener(new DocumentListener() {
             @Override
@@ -54,7 +58,7 @@ public class SocietyPanel extends GridPanel {
                 }
             }
         });
-        getControl().add(textField1);
+        panel.add(textField1);
     }
 
     private static void updateTextField(Set<Integer> set, JTextField textField) {
