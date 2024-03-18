@@ -1,3 +1,8 @@
+/*
+ * Edit Log:
+ * Danny 03/17: Completed Implementation
+ * Tiger 03/17: Bug Fixes
+ */
 package LifeLab;
 
 import CALab.Cell;

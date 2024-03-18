@@ -1,3 +1,7 @@
+/*
+ * Edit Log:
+ * Alvin 03/14: Completed Implementation
+ */
 package LifeLab;
 
 import java.awt.*;
