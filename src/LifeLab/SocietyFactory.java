@@ -1,3 +1,9 @@
+/*
+ * Edit Log:
+ * Tiger 03/04: Created File
+ * Tiger 03/15: Completed Implementation
+ * Alvin 03/16: Copied Code Over
+ */
 package LifeLab;
 
 import CALab.*;

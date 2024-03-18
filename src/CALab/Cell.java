@@ -1,3 +1,8 @@
+/*
+ * Edit Log:
+ * Alvin 03/15: Completed Implementation
+ */
+
 package CALab;
 import mvc.*;
 
