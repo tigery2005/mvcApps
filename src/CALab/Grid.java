@@ -57,6 +57,13 @@ public abstract class Grid extends Model {
                     //Math.random return [0-1). >0.5 is 50% chance true/false
                 }
             }
+            for (int i=0;i<dim;i++) {
+                for (int j=0;j<dim;j++){
+                    Cell u = cells[i][j];
+                    u.observe();
+                }
+            }
+
 
 
         // notify subscribers

@@ -11,7 +11,7 @@ import LifeLab.Society;
 
 public class Agent extends Cell {
     private int status = 0;
-    private int ambience = 8;
+    private int ambience = 0;
 
     @Override
     public void update() {
@@ -71,18 +71,23 @@ public class Agent extends Cell {
 
     @Override
     public int getStatus() {
-        return status;
+        return ambience;
     }
+
+    @Override
+    public int getState() {return status;}
+
     @Override
     public void observe() {
 
         ambience = 0;
 
         for(Cell s : neighbors) {
-            if (s.getStatus() == 1) {
+            if (s.getState() == 1) {
                 ambience = ambience + 1;
             }
         }
+        notifySubscribers();
     }
 
     @Override

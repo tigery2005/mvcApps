@@ -64,6 +64,7 @@ public abstract class Cell extends Publisher implements Serializable {
 
     public abstract Color getColor();
     public abstract int getStatus();
+    public abstract int getState();
     // observer neighbors' states
     public abstract void observe();
     // interact with a random neighbor
